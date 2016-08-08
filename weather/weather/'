@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+import json
+
+class WeatherPipeline(object):
+    def __init__(self):
+        self.file = open('ranks.txt','wt+')
+    def process_item(self, item, spider):
+        line = 'order : {0}\t\tCity :{1}\t\tProvenci:{2}\t\t Tempture(water)\t\t{3}'.format(item[0], item[1],item[2],item[3])
+        self.file.write(line)
+        return item
